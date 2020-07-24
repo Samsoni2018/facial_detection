@@ -163,6 +163,16 @@ def pixel_to_normalized_coord(scene_shape, p_x, p_y):
     return [c_x, c_y]
 
 # -----------------------------------------------------------------------
+# SAMSONI ROTATION AND SCALING FUNCTIONS
+# -----------------------------------------------------------------------
+def img_rotation(img):
+    return
+
+
+def img_scaling(img):
+    return
+
+# -----------------------------------------------------------------------
 # CREATE SYNTHETIC DATASET
 # -----------------------------------------------------------------------
 
@@ -178,8 +188,8 @@ mnist = tf.keras.datasets.mnist
 # -------------------------------
 images_per_scene = 2
 scene_shape = [100, 100]
-trainset_size = 60000
-testset_size = 1000
+trainset_size = 10
+# testset_size = 1000
 
 # ----- Training set ------------------------
 synthetic_train = []
@@ -187,17 +197,25 @@ for _ in range(0, trainset_size):
     random_indices = np.random.randint(0, np.shape(x_train)[0], images_per_scene)
     images = [x_train[index] for index in random_indices]
     labels = [y_train[index] for index in random_indices]
+
+    # =========== HERE IS WHERE YOU CAN ADD ROTATIONS AND SCALING =================
+
+    # =============================================================================
     scene = ScatteredScene(scene_shape, images, labels)
     synthetic_train.append(scene)
 
+# =========== HERE WE NEED TO SAVE THE DATA TO FILE ===========================
 
-# ----- Test set ------------------------
-synthetic_test = []
-for _ in range(0, testset_size):
-    random_indices = np.random.randint(0, np.shape(x_test)[0], images_per_scene)
-    images = [x_test[index] for index in random_indices]
-    labels = [y_test[index] for index in random_indices]
-    scene = ScatteredScene(scene_shape, images, labels)
-    synthetic_test.append(scene)
+# =============================================================================
+
+
+# # ----- Test set ------------------------
+# synthetic_test = []
+# for _ in range(0, testset_size):
+#     random_indices = np.random.randint(0, np.shape(x_test)[0], images_per_scene)
+#     images = [x_test[index] for index in random_indices]
+#     labels = [y_test[index] for index in random_indices]
+#     scene = ScatteredScene(scene_shape, images, labels)
+#     synthetic_test.append(scene)
 
 
