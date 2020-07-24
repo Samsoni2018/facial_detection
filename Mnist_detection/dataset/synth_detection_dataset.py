@@ -197,11 +197,11 @@ for _ in range(0, trainset_size):
     random_indices = np.random.randint(0, np.shape(x_train)[0], images_per_scene)
     images = [x_train[index] for index in random_indices]
     labels = [y_train[index] for index in random_indices]
-
     # =========== HERE IS WHERE YOU CAN ADD ROTATIONS AND SCALING =================
 
     # =============================================================================
     scene = ScatteredScene(scene_shape, images, labels)
+    scene.show_with_boxes()
     synthetic_train.append(scene)
 
 # =========== HERE WE NEED TO SAVE THE DATA TO FILE ===========================
